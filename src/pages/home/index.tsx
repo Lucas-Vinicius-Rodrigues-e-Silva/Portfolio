@@ -27,9 +27,14 @@ import {
   ProjectsAreaContent,
 } from "./style";
 
+import { useContext } from "react";
+import { LangContext } from "../../providers/LangContext";
+
 export const Home = (): JSX.Element => {
   const gihubUrl = `https://github.com/${userData.githubUser}`;
   const portfolioUrl = `https://github.com/${userData.githubUser}/Portfolio`;
+
+  const { lang } = useContext(LangContext);
 
   return (
     <main id="home">
@@ -44,29 +49,38 @@ export const Home = (): JSX.Element => {
                 width={"48px"}
                 height={"48px"}
               />
-              <Text color="grey4">Hello, my name is {userData.nameUser}</Text>
+              <Text color="grey4">
+                {" "}
+                {lang === "English"
+                  ? "Hello, my name is"
+                  : "Olá meu nome é"}{" "}
+                {userData.nameUser}
+              </Text>
             </Flex>
             <Text as="h1" type="heading1" color="grey5">
-              I{" "}
+              {lang === "English" ? "I" : "Eu"}{" "}
               <Text as="span" type="heading1" color="brand1">
-                love
+                {lang === "English" ? "love" : "amo"}
               </Text>{" "}
-              creating and{" "}
+              {lang === "English" ? "creating and" : "criar e"}{" "}
               <Text as="span" type="heading1" color="brand1">
-                developing
+                {lang === "English" ? "developing" : "desenvolver"}
               </Text>{" "}
-              projects
+              {lang === "English" ? "projects" : "projetos"}
             </Text>
             <Text type="body1" color="grey2">
-              Discover here in this environment, created especially for you, all
-              my projects and technologies
+              {lang === "English"
+                ? "Discover here in this environment, created especially for you, all my projects and technologies"
+                : "Descubra aqui nesse ambiente, criado especialmente para você, todos os meus projetos e tecnologias"}
             </Text>
             <HeaderButtonsArea>
               <Button as="a" type="primary" href="#projects">
-                See Projects
+                {lang === "English" ? "See Projects" : "Ver projetos"}
               </Button>
               <Button as="a" type="outline" target="_blank" href={portfolioUrl}>
-                See my portfolio source code
+                {lang === "English"
+                  ? "See my portfolio source code"
+                  : "Ver codígo fonte do meu portfólio"}
               </Button>
               <Button
                 color="grey5"
@@ -92,12 +106,12 @@ export const Home = (): JSX.Element => {
           <ProjectAreaWrapperColumns>
             <ProjectsAreaSocialMediaMessage>
               <Text as="h2" type="heading4" color="grey4">
-                My projects
+                {lang === "English" ? "My projects" : "Meus projetos"}
               </Text>
               <Text as="p" type="body1" color="grey2">
-                Some of my{" "}
+                {lang === "English" ? "Some of my" : "Alguns dos meus"}{" "}
                 <Text as="span" color="brand5">
-                  side projects
+                  {lang === "English" ? "side projects" : "outros projetos"}
                 </Text>
               </Text>
             </ProjectsAreaSocialMediaMessage>

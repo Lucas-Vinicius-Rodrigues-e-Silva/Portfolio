@@ -4,13 +4,16 @@ import { GlobalStyle } from "@/styles/Global";
 import { Home } from "@/pages/home";
 import { NavBar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Providers } from "./providers";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <GlobalStyle>
-      <NavBar />
-      <Home />
-      <Footer />
-    </GlobalStyle>
+    <Providers>
+      <GlobalStyle>
+        <NavBar />
+        <Home />
+        <Footer />
+      </GlobalStyle>
+    </Providers>
   </React.StrictMode>
 );

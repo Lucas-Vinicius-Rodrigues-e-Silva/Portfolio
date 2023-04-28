@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LangContext } from "../../providers/LangContext";
 import useMedia from "use-media";
 import { userData } from "@/utils/userData";
 
@@ -12,6 +13,7 @@ import {
 
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import { MdLanguage } from "react-icons/md";
 import { Button } from "@/styles/Buttons";
 import { Container, Flex } from "@/styles/Global";
 
@@ -21,7 +23,6 @@ export interface MenuButtonOpen {
 }
 
 export const NavBar = (): JSX.Element => {
-
   const isWide = useMedia({ maxWidth: "991px" });
 
   document.title = userData.nameUser;
@@ -49,28 +50,44 @@ export const NavBar = (): JSX.Element => {
             </Button>
           )}
         </NavbarMobileArea>
-        <Flex>
-          {isWide ? open && <NavLinks /> : <NavLinks />}
-        </Flex>
+        <Flex>{isWide ? open && <NavLinks /> : <NavLinks />}</Flex>
       </Container>
     </NavbarWrapper>
   );
 };
 
 export const NavLinks = (): JSX.Element => {
+  const { lang, setLang } = useContext(LangContext);
+
+  const ChangeLang = () => {
+    if (lang === "English") {
+      setLang("Português");
+    } else {
+      setLang("English");
+    }
+    console.log(lang);
+  };
   return (
     <NavbarLinks>
       <Button type="btLink" as="a" color="grey4" href={`#home`}>
-        Home
+        {lang === "English" ? "Home" : "Início"}
       </Button>
       <Button type="btLink" as="a" color="grey4" href={`#projects`}>
-        Projects
+        {lang === "English" ? "Projects" : "Projetos"}
       </Button>
       <Button type="btLink" as="a" color="grey4" href={`#contact`}>
-        Contact
+        {lang === "English" ? "Contact" : "Contato"}
       </Button>
       <Button type="btLink" as="a" color="grey4" href={`#social-media`}>
-        Social Media
+        {lang === "English" ? "Social Media" : "Redes Sociais"}
+      </Button>
+      <Button
+        type="icon"
+        color="grey4"
+        aria-label="Change lang"
+        onClick={ChangeLang}
+      >
+        <MdLanguage />
       </Button>
     </NavbarLinks>
   );

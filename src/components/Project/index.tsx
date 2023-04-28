@@ -8,9 +8,10 @@ import {
 } from "./style";
 
 import { Text } from "@/styles/Text";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FaGithub, FaShare } from "react-icons/fa";
 import { userData } from "@/utils/userData";
+import { LangContext } from "../../providers/LangContext";
 
 interface ReposType {
   id: number;
@@ -23,6 +24,8 @@ interface ReposType {
 
 export const Project = (): JSX.Element => {
   const [repositories, setRepositories] = useState<ReposType[]>([]);
+
+  const { lang } = useContext(LangContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,7 +59,10 @@ export const Project = (): JSX.Element => {
 
             <ProjectStack>
               <Text type="body2" color="grey2">
-                Primary Language:
+                {lang === "English"
+                  ? "Primary Language:"
+                  : "Linguagem principal"}{" "}
+                {userData.nameUser}
               </Text>
               {repository.language ? (
                 <ProjectStackTech>
@@ -67,7 +73,9 @@ export const Project = (): JSX.Element => {
               ) : (
                 <ProjectStackTech>
                   <Text color="grey2" type="body2">
-                    Primary language not identified
+                    {lang === "English"
+                      ? "Primary language not identified"
+                      : "Linguagem principal não identificada"}
                   </Text>
                 </ProjectStackTech>
               )}
@@ -78,11 +86,12 @@ export const Project = (): JSX.Element => {
             </Text>
             <ProjectLinks>
               <ProjectLink target="_blank" href={repository.html_url}>
-                <FaGithub /> Github Code
+                <FaGithub />{" "}
+                {lang === "English" ? "Github Code" : "Codígo do Github"}
               </ProjectLink>
               {repository.homepage && (
                 <ProjectLink target="_blank" href={`${repository.homepage}`}>
-                  <FaShare /> See demo
+                  <FaShare /> {lang === "English" ? "See demo" : "Ver demo"}
                 </ProjectLink>
               )}
             </ProjectLinks>
