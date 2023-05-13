@@ -11,6 +11,7 @@ import { Text } from "@/styles/Text";
 import { useEffect, useState, useContext } from "react";
 import { FaGithub, FaShare } from "react-icons/fa";
 import { userData } from "@/utils/userData";
+import { RepoImgs } from "@/utils/reposData";
 import { LangContext } from "../../providers/LangContext";
 
 interface ReposType {
@@ -24,6 +25,8 @@ interface ReposType {
 
 export const Project = (): JSX.Element => {
   const [repositories, setRepositories] = useState<ReposType[]>([]);
+
+  console.log(repositories);
 
   const { lang } = useContext(LangContext);
 
@@ -61,8 +64,7 @@ export const Project = (): JSX.Element => {
               <Text type="body2" color="grey2">
                 {lang === "English"
                   ? "Primary Language:"
-                  : "Linguagem principal"}{" "}
-                {userData.nameUser}
+                  : "Linguagem principal"}
               </Text>
               {repository.language ? (
                 <ProjectStackTech>
@@ -80,10 +82,23 @@ export const Project = (): JSX.Element => {
                 </ProjectStackTech>
               )}
             </ProjectStack>
-
             <Text type="body1" color="grey2">
               {repository.description?.substring(0, 129)}
             </Text>
+            {RepoImgs?.map(
+              (img) =>
+                img.id === repository.id && (
+                  <img
+                    src={img.img}
+                    style={{
+                      width: "35vw",
+                      height: "45vh",
+                      borderRadius: "2%",
+                    }}
+                    key={img.id}
+                  ></img>
+                )
+            )}
             <ProjectLinks>
               <ProjectLink target="_blank" href={repository.html_url}>
                 <FaGithub />{" "}

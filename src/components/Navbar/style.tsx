@@ -3,7 +3,7 @@ import { Flex, Container } from "@/styles/Global";
 import { Button } from "@/styles/Buttons";
 
 export const Navbar = styled("nav", {
-  background: "$grey0",
+  background: "$grey1",
   borderBottom: "2px solid $brand1",
   position: "fixed",
   inset: 0,

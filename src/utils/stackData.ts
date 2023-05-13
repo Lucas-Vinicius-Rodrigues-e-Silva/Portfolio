@@ -4,9 +4,13 @@ import {
   SiDjango,
   SiVite,
   SiVercel,
+  SiNestjs,
+  SiOpenai,
 } from "react-icons/si";
 import { FaGit, FaPython } from "react-icons/fa";
 import { FaHtml5, FaCss3Alt, FaJs, FaNode, FaReact } from "react-icons/fa";
+import { TbBrandNextjs } from "react-icons/tb";
+import { GrDocker } from "react-icons/gr";
 
 export const stackData = [
   {
@@ -39,4 +43,8 @@ export const stackData = [
   { title: "PostgreSQL", img: SiPostgresql },
   { title: "Git", img: FaGit },
   { title: "Python", img: FaPython },
+  { title: "NestJS", img: SiNestjs },
+  { title: "NextJS", img: TbBrandNextjs },
+  { title: "Docker", img: GrDocker },
+  { title: "OpenAI", img: SiOpenai },
 ];
